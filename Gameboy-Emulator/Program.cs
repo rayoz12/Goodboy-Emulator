@@ -8,10 +8,12 @@ namespace Gameboy_Emulator
         static void Main(string[] args)
         {
             Console.WriteLine("GoodBoy");
+            // Create IO
+            ImGuiInput input = new ImGuiInput();
 
 
             ROM rom = new ROM("C:\\Users\\Ryan\\Desktop\\emulators\\developed\\Gameboy-Emulator\\Tetris.gb");
-            CPU.CPU cpu = new CPU.CPU(rom);
+            CPU.CPU cpu = new CPU.CPU(rom, input);
             cpu.Init();
 
             UI.UI ui = new UI.UI(cpu);

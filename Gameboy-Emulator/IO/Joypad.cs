@@ -10,11 +10,6 @@ using System.Threading.Tasks;
 
 namespace Gameboy_Emulator.IO {
 
-    public interface IJoypadInput {
-        DirectionalButtons getDirectionalButtonState();
-        ActionButtons getActionButtonState();
-    }
-
     [Flags]
     public enum JOYPFlags {
         Button0 = 1 << 0,
@@ -30,13 +25,16 @@ namespace Gameboy_Emulator.IO {
     /// <summary>
     /// This class reads input and writes it to memory
     /// </summary>
-    internal class Joypad {
-        Memory memory;
+    public class Joypad {
+        public Memory memory;
         
         /// <summary>
         /// Low = Off, High = On. Note this is opposite to the gameboy (Low = On, High = Off)
         /// </summary>
         DirectionalButtons directionalIsPressed = 0;
+        /// <summary>
+        /// Low = Off, High = On. Note this is opposite to the gameboy (Low = On, High = Off)
+        /// </summary>
         ActionButtons actionIsPressed = 0;
 
         Index JOYP = Memory.IO.Start;
@@ -49,7 +47,7 @@ namespace Gameboy_Emulator.IO {
             memory[JOYP] = 0b11111111;
         }
 
-        public void Process() {
+        public void Tick() {
             // Read the joypad selected and update the bits
             JOYPFlags register = (JOYPFlags) memory[JOYP];
 

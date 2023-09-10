@@ -10,6 +10,7 @@ using Veldrid;
 using Veldrid.StartupUtilities;
 using System.Diagnostics;
 using Gameboy_Emulator.CPU;
+using Gameboy_Emulator.IO;
 
 namespace Gameboy_Emulator.UI
 {
@@ -17,19 +18,19 @@ namespace Gameboy_Emulator.UI
 
         private CPU.CPU cpu;
 
-        private static Sdl2Window _window;
-        private static GraphicsDevice _gd;
-        private static CommandList _cl;
-        private static ImGuiController _controller;
+        private Sdl2Window _window;
+        private GraphicsDevice _gd;
+        private CommandList _cl;
+        private ImGuiController _controller;
 
         float deltaTime = 0f;
         Stopwatch stopwatch = Stopwatch.StartNew();
 
         // UI state
-        private static float _f = 0.0f;
-        private static int _counter = 0;
-        private static int _dragInt = 0;
-        private static Vector3 _clearColor = new Vector3(0.45f, 0.55f, 0.6f);
+        private float _f = 0.0f;
+        private int _counter = 0;
+        private int _dragInt = 0;
+        private Vector3 _clearColor = new Vector3(0.45f, 0.55f, 0.6f);
 
         public UI(CPU.CPU cpu) {
             this.cpu = cpu;
@@ -124,8 +125,6 @@ namespace Gameboy_Emulator.UI
             ImGui.Text($"Application average {1000.0f / framerate:0.##} ms/frame ({framerate:0.#} FPS)");
             ImGui.End();
         }
-
-        public void 
 
         public void Dispose() {
             // Clean up Veldrid resources

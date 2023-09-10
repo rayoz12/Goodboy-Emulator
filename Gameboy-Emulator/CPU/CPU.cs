@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gameboy_Emulator.IO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +9,19 @@ namespace Gameboy_Emulator.CPU
 {
     public class CPU
     {
+        internal ROM rom;
         internal Registers registers = new Registers();
         internal Memory memory = new Memory();
-        internal ROM rom;
+        public Joypad joypad;
         internal int clock = 0;
 
         public IInstruction LastIntruction;
         public InstructionReference LastIntructionRef;
 
 
-        public CPU(ROM rom) {
+        public CPU(ROM rom, IJoypadInput input) {
             this.rom = rom;
+            joypad = new Joypad(memory, input);
         }
 
         public void Init() {

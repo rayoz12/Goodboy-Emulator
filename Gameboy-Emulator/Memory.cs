@@ -18,7 +18,7 @@ namespace Gameboy_Emulator
 
     }
 
-    internal class Memory {
+    public class Memory {
         private byte[] _memoryMap = new byte[0x10000];
 
         public byte this[int i] {
