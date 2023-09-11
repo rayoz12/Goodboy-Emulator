@@ -40,7 +40,7 @@ namespace Gameboy_Emulator.UI
             // Create window, GraphicsDevice, and all resources necessary for the demo.
             VeldridStartup.CreateWindowAndGraphicsDevice(
                 new WindowCreateInfo(50, 50, 1280, 720, WindowState.Normal, "Goodboy Emulator"),
-                new GraphicsDeviceOptions(true, null, true, ResourceBindingModel.Improved, true, true),
+                new GraphicsDeviceOptions(true, null, false, ResourceBindingModel.Improved, true, true),
                 out _window,
                 out _gd);
             _window.Resized += () => {
@@ -124,6 +124,10 @@ namespace Gameboy_Emulator.UI
             float framerate = ImGui.GetIO().Framerate;
             ImGui.Text($"Application average {1000.0f / framerate:0.##} ms/frame ({framerate:0.#} FPS)");
             ImGui.End();
+        }
+
+        private void DrawJoypad() {
+
         }
 
         public void Dispose() {

@@ -19,7 +19,7 @@ namespace Gameboy_Emulator.CPU
         public InstructionReference LastIntructionRef;
 
 
-        public CPU(ROM rom, IJoypadInput input) {
+        public CPU(ROM rom, IUserJoypadInput input) {
             this.rom = rom;
             joypad = new Joypad(memory, input);
         }
@@ -28,6 +28,7 @@ namespace Gameboy_Emulator.CPU
             registers.Init();
             rom.loadROM();
             memory.Init(rom);
+            joypad.Init();
         }
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace Gameboy_Emulator.CPU
         public void Tick() {
 
             // Update IO
-
+            joypad.Tick();
 
             // Trigger interrupts
 

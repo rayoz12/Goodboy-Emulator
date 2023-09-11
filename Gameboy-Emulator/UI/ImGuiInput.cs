@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Gameboy_Emulator.UI {
-    public class ImGuiInput : IJoypadInput {
+    public class ImGuiInput : IUserJoypadInput {
         public DirectionalButtons getDirectionalButtonState() {
             DirectionalButtons buttons = 0;
             if (ImGui.IsKeyDown(ImGuiKey.RightArrow)) {

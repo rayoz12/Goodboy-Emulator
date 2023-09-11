@@ -1,5 +1,6 @@
 ﻿using Gameboy_Emulator.CPU;
 using Gameboy_Emulator.UI;
+using System.Threading;
 
 namespace Gameboy_Emulator
 {
@@ -18,11 +19,20 @@ namespace Gameboy_Emulator
 
             UI.UI ui = new UI.UI(cpu);
             ui.Init();
+
+            Thread t = new Thread(() => updateUI(ui));
+            //t.Start();
             while (true) {
                 cpu.Tick();
                 if (!ui.Tick()) {
                     break;
-                }
+                };
+            }
+        }
+
+        static void updateUI(UI.UI ui) {
+            while (true) { 
+                ui.Tick();
             }
         }
     }
